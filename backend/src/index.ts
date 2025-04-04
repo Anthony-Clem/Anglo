@@ -4,6 +4,7 @@ import express from "express";
 import { conifg } from "./config/env.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import { HTTPSTATUS } from "./config/http.config";
+import categoryRoutes from "./routes/category.route";
 
 const app = express();
 const port = conifg.PORT;
@@ -16,6 +17,8 @@ app.use(cors());
 app.get(`${basePath}`, (req, res) => {
   res.sendStatus(HTTPSTATUS.OK);
 });
+
+app.use(`${basePath}/categories`, categoryRoutes);
 
 app.use(errorHandler);
 
