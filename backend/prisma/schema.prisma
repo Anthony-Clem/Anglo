@@ -8,30 +8,18 @@ datasource db {
 }
 
 model Category {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-  Game Game[]
-  Word Word[]
-}
-
-model Game {
-  id             String     @id
-  status         GameStatus @default(ONGOING)
-  guessed        String[]   @default([])
-  wordId         Int
-  categoryId     Int
-  hp             Int        @default(7)
-  correctGuesses String[]   @default([])
-  Category       Category   @relation(fields: [categoryId], references: [id])
-  Word           Word       @relation(fields: [wordId], references: [id])
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  games Game[]
+  words Word[]
 }
 
 model Word {
   id         Int      @id @default(autoincrement())
   text       String   @unique
   categoryId Int
-  Game       Game[]
-  Category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  games      Game[]
+  categories Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 }
 
 enum GameStatus {
@@ -39,4 +27,18 @@ enum GameStatus {
   WON
   LOST
   ABANDONED
+}
+
+model Game {
+  id              String     @id @default(uuid())
+  status          GameStatus @default(ONGOING)
+  guessed         String[]   @default([])
+  wordId          Int
+  categoryId      Int
+  hp              Int        @default(7)
+  duration        Int        @default(0)
+  numberOfGuesses Int        @default(0)
+  correctGuesses  String[]   @default([])
+  category        Category   @relation(fields: [categoryId], references: [id])
+  word            Word       @relation(fields: [wordId], references: [id])
 }

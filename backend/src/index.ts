@@ -5,6 +5,7 @@ import { conifg } from "./config/env.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import { HTTPSTATUS } from "./config/http.config";
 import categoryRoutes from "./routes/category.route";
+import gameRoute from "./routes/game.route";
 
 const app = express();
 const port = conifg.PORT;
@@ -19,6 +20,7 @@ app.get(`${basePath}`, (req, res) => {
 });
 
 app.use(`${basePath}/categories`, categoryRoutes);
+app.use(`${basePath}/games`, gameRoute);
 
 app.use(errorHandler);
 
