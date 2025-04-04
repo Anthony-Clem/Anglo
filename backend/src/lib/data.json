@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Animals",
+    "words": [
+      "Elephant",
+      "Giraffe",
+      "Kangaroo",
+      "Cheetah",
+      "Dolphin",
+      "Tiger",
+      "Zebra",
+      "Penguin",
+      "Crocodile",
+      "Hippopotamus"
+    ]
+  },
+  {
+    "name": "Countries",
+    "words": [
+      "Canada",
+      "Brazil",
+      "Germany",
+      "Japan",
+      "Australia",
+      "France",
+      "Italy",
+      "India",
+      "Mexico",
+      "Sweden"
+    ]
+  },
+  {
+    "name": "Fruits",
+    "words": [
+      "Apple",
+      "Banana",
+      "Strawberry",
+      "Pineapple",
+      "Watermelon",
+      "Blueberry",
+      "Mango",
+      "Pomegranate",
+      "Peach",
+      "Kiwi"
+    ]
+  },
+  {
+    "name": "Sports",
+    "words": [
+      "Soccer",
+      "Basketball",
+      "Tennis",
+      "Baseball",
+      "Swimming",
+      "Cycling",
+      "Wrestling",
+      "Golf",
+      "Volleyball",
+      "Boxing"
+    ]
+  },
+  {
+    "name": "Games",
+    "words": [
+      "Chess",
+      "Monopoly",
+      "Fortnite",
+      "Minecraft",
+      "Overwatch",
+      "Pacman",
+      "Tetris",
+      "Halo",
+      "Valorant",
+      "Zelda"
+    ]
+  },
+  {
+    "name": "Movies",
+    "words": [
+      "Inception",
+      "Titanic",
+      "Avatar",
+      "Gladiator",
+      "Interstellar",
+      "Jaws",
+      "Frozen",
+      "Godfather",
+      "Avengers",
+      "StarWars"
+    ]
+  }
+]

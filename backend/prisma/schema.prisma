@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  Game Game[]
+  Word Word[]
+}
+
+model Game {
+  id             String     @id
+  status         GameStatus @default(ONGOING)
+  guessed        String[]   @default([])
+  wordId         Int
+  categoryId     Int
+  hp             Int        @default(7)
+  correctGuesses String[]   @default([])
+  Category       Category   @relation(fields: [categoryId], references: [id])
+  Word           Word       @relation(fields: [wordId], references: [id])
+}
+
+model Word {
+  id         Int      @id @default(autoincrement())
+  text       String   @unique
+  categoryId Int
+  Game       Game[]
+  Category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+}
+
+enum GameStatus {
+  ONGOING
+  WON
+  LOST
+  ABANDONED
+}
