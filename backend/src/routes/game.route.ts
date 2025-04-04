@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  getGameController,
   getGameStatsController,
   guessLetterController,
   startNewGameController,
@@ -8,7 +9,8 @@ import {
 const gameRoute = Router();
 
 gameRoute.post("/", startNewGameController);
+gameRoute.get("/stats/:id", getGameStatsController);
+gameRoute.get("/:id", getGameController);
 gameRoute.put("/:id", guessLetterController);
-gameRoute.get("/:id", getGameStatsController);
 
 export default gameRoute;

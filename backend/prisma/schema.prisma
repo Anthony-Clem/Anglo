@@ -30,15 +30,14 @@ enum GameStatus {
 }
 
 model Game {
-  id              String     @id @default(uuid())
-  status          GameStatus @default(ONGOING)
-  guessed         String[]   @default([])
-  wordId          Int
-  categoryId      Int
-  hp              Int        @default(7)
-  duration        Int        @default(0)
-  numberOfGuesses Int        @default(0)
-  correctGuesses  String[]   @default([])
-  category        Category   @relation(fields: [categoryId], references: [id])
-  word            Word       @relation(fields: [wordId], references: [id])
+  id             String     @id @default(uuid())
+  status         GameStatus @default(ONGOING)
+  guessed        String[]   @default([])
+  wordId         Int
+  categoryId     Int
+  hp             Int        @default(7)
+  duration       Int        @default(0)
+  correctGuesses String[]   @default([])
+  category       Category   @relation(fields: [categoryId], references: [id])
+  word           Word       @relation(fields: [wordId], references: [id])
 }

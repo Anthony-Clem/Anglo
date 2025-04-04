@@ -3,6 +3,7 @@ import { HTTPSTATUS } from "../config/http.config";
 import { guessLetterSchema, startNewGameSchema } from "../lib/schema";
 import { asyncHandler } from "../middlewares/asyncHandler.middleware";
 import {
+  getGameService,
   getGameStatsService,
   guessLetterService,
   startNewGameService,
@@ -55,5 +56,16 @@ export const getGameStatsController = asyncHandler(async (req, res) => {
       duration,
       numberOfGuesses,
     },
+  });
+});
+
+export const getGameController = asyncHandler(async (req, res) => {
+  const gameId = z.string().parse(req.params.id);
+
+  const { game } = await getGameService(gameId);
+
+  return res.status(HTTPSTATUS.OK).json({
+    message: "Game fetched successfully",
+    data: game,
   });
 });

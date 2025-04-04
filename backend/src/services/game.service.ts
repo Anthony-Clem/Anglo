@@ -57,9 +57,9 @@ export const guessLetterService = async (
     throw new HttpError("Game already concluded", HTTPSTATUS.BAD_REQUEST);
   }
 
-  if (duration < game.duration) {
+  if (duration <= game.duration) {
     throw new HttpError(
-      "Duration cannot be less than time areadly lasped in game",
+      "Duration cannot be less than or equal to the time already lasped in game",
       HTTPSTATUS.BAD_REQUEST
     );
   }
@@ -74,7 +74,6 @@ export const guessLetterService = async (
   const guessedSet = new Set([...game.guessed, normalizedGuess]);
 
   let guessResult;
-  let numberOfGuesses = game.numberOfGuesses + 1;
   let newStatus: GameStatus = game.status;
   let newHp = game.hp;
   let correctGuesses = [...game.correctGuesses];
@@ -103,7 +102,6 @@ export const guessLetterService = async (
       hp: newHp,
       status: newStatus,
       duration: duration,
-      numberOfGuesses,
     },
   });
 
@@ -139,6 +137,23 @@ export const getGameStatsService = async (gameId: string) => {
     result: game.status,
     duration: game.duration,
     word: game.word.text,
-    numberOfGuesses: game.numberOfGuesses,
+    numberOfGuesses: game.guessed.length,
   };
+};
+
+export const getGameService = async (gameId: string) => {
+  const game = await prisma.game.findFirst({
+    where: {
+      id: gameId,
+    },
+    include: {
+      word: true,
+      category: true,
+    },
+  });
+  if (!game) {
+    throw new HttpError("Game not found", HTTPSTATUS.NOT_FOUND);
+  }
+
+  return { game };
 };
