@@ -27,6 +27,9 @@ export const startNewGameService = async (categoryName: string) => {
       categoryId: category.id,
       wordId: randomWord.id,
     },
+    include: {
+      category: true,
+    },
   });
 
   return { game };
